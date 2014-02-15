@@ -11,8 +11,8 @@
 @interface Client : NSObject
 
 @property bool present;
-@property (strong, nonatomic) NSString *firstName;
-@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *first_Name;
+@property (strong, nonatomic) NSString *last_Name;
 @property (strong, nonatomic) NSString *uid;
 
 - (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p;

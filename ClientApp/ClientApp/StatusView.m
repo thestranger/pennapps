@@ -88,14 +88,44 @@
     // Beacon found!
     //self.statusLabel.text = @"Beacon found!";
     
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@",BASEURL, POSTNEWCLIENTSTATUS];
+    NSURL *url = [NSURL URLWithString:urlString];
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
+    RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"first_Name", @"first_name", @"last_Name", @"last_Name", @"uid", @"uid", nil];
+    
+    [clientMapping addAttributeMappingsFromDictionary:dictionary];
+    
     CLBeacon *foundBeacon = [beacons firstObject];
     NSInteger n = foundBeacon.rssi;
     if (n == 0) {
         self.statusLabel.text = @"No";
-        
+        self.client.present = NO;
     } else {
         self.statusLabel.text = @"Yes";
+        self.client.present = YES;
     }
+    
+    [objectManager addRequestDescriptor:
+     [RKRequestDescriptor requestDescriptorWithMapping:clientMapping objectClass:[Client class] rootKeyPath:@"client" method:nil]];
+    
+    
+    
+    [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"Posted object with the following result: %@", mappingResult);
+    } failure:nil];
+    
+     /*:self.client usingBlock:^(RKObjectLoader *loader) {
+        NSLog(@"In post object block");
+        loader.resourcePath = @"/client";
+        loader.delegate = self;
+        loader.method = RKRequestMethodPOST;
+        loader.objectMapping = clientMapping;
+        loader.serializationMapping = clientMapping; */
     
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
