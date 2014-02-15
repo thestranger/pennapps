@@ -51,13 +51,13 @@
 //    self.myBeaconData = [self.myBeaconRegion peripheralDataWithMeasuredPower:nil];
     
 //    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
-    if (!_broadcastIsOn)
+    if (!_broadcastIsOn.isOn)
+    {
+        [self.peripheralManager stopAdvertising];
+    }
+    else if (_broadcastIsOn.isOn)
     {
         [self.peripheralManager startAdvertising:self.myBeaconData];
-    }
-    else if ( _broadcastIsOn)
-    {
-       [self.peripheralManager stopAdvertising];
     }
         
 }
@@ -72,7 +72,7 @@
         self.bluetoothStatusLabel.text = @"Bluetooth Status: On";
         _broadcastIsOn.enabled =YES;
         //Start broadcasting
-       if(_broadcastIsOn)
+       if(_broadcastIsOn.isOn)
        {
            [self.peripheralManager startAdvertising:self.myBeaconData];
        }
