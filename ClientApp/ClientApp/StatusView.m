@@ -95,6 +95,7 @@
     } else {
         self.statusLabel.text = @"Yes";
     }
+    
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
     //NSString *major = [NSString stringWithFormat:@"%@", foundBeacon.major];
