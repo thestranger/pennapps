@@ -1,5 +1,6 @@
 import re
 
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from trackemployee.models import Employee
 from django.http import HttpResponseRedirect
@@ -7,16 +8,27 @@ from django.db.models import Q
 
 # Create your views here.
 
+
 def query_request(request):
-    queries = re.sub(' ','+',request.POST['query'])
+    queries = re.sub(' ', '+', request.POST['query'])
     return HttpResponseRedirect('/search/'+queries)
 
 
 def login(request):
-    context = {}
-    if request.method == 'POST':
-        return HttpResponseRedirect("index")
-    return render(request, 'trackemployee/login.html', context)
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+
+        else:
+            return
+            # Account is disabled
+    else:
+        return
+        # Invalid Login
+
     
 def index(request):
     context = {}
