@@ -22,6 +22,8 @@
 		673F817718AF1D1400E3E975 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 673F817518AF1D1400E3E975 /* InfoPlist.strings */; };
 		673F817918AF1D1400E3E975 /* ClientAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 673F817818AF1D1400E3E975 /* ClientAppTests.m */; };
 		87C625FA18AF27E1006588DE /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C625F918AF27E1006588DE /* StatusView.m */; };
+		87C625FC18AF2970006588DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C625FB18AF2970006588DE /* CoreLocation.framework */; };
+		87C625FF18AF30B3006588DE /* GlobalDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C625FE18AF30B3006588DE /* GlobalDataHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,9 @@
 		673F817818AF1D1400E3E975 /* ClientAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientAppTests.m; sourceTree = "<group>"; };
 		87C625F818AF27E1006588DE /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		87C625F918AF27E1006588DE /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
+		87C625FB18AF2970006588DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		87C625FD18AF30B3006588DE /* GlobalDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDataHandler.h; sourceTree = "<group>"; };
+		87C625FE18AF30B3006588DE /* GlobalDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalDataHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C625FC18AF2970006588DE /* CoreLocation.framework in Frameworks */,
 				673F815018AF1D1300E3E975 /* CoreGraphics.framework in Frameworks */,
 				673F815218AF1D1300E3E975 /* UIKit.framework in Frameworks */,
 				673F814E18AF1D1300E3E975 /* Foundation.framework in Frameworks */,
@@ -104,6 +110,7 @@
 		673F814C18AF1D1300E3E975 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87C625FB18AF2970006588DE /* CoreLocation.framework */,
 				673F814D18AF1D1300E3E975 /* Foundation.framework */,
 				673F814F18AF1D1300E3E975 /* CoreGraphics.framework */,
 				673F815118AF1D1300E3E975 /* UIKit.framework */,
@@ -122,6 +129,8 @@
 				673F816318AF1D1400E3E975 /* ClientViewController.m */,
 				87C625F818AF27E1006588DE /* StatusView.h */,
 				87C625F918AF27E1006588DE /* StatusView.m */,
+				87C625FD18AF30B3006588DE /* GlobalDataHandler.h */,
+				87C625FE18AF30B3006588DE /* GlobalDataHandler.m */,
 				673F816518AF1D1400E3E975 /* Images.xcassets */,
 				673F815418AF1D1300E3E975 /* Supporting Files */,
 			);
@@ -256,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				673F815A18AF1D1300E3E975 /* main.m in Sources */,
+				87C625FF18AF30B3006588DE /* GlobalDataHandler.m in Sources */,
 				673F815E18AF1D1400E3E975 /* ClientAppDelegate.m in Sources */,
 				87C625FA18AF27E1006588DE /* StatusView.m in Sources */,
 				673F816418AF1D1400E3E975 /* ClientViewController.m in Sources */,

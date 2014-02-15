@@ -10,20 +10,40 @@
 
 @implementation StatusView
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+@synthesize statusLabel, locationManager, myBeaconRegion;
+
+- (void)viewDidLoad
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Initialize location manager and set ourselves as the delegate
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
+    // Create a NSUUID with the same UUID as the broadcasting beacon
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
+    
+    // Tell location manager to start monitoring for the beacon region
+    [self.locationManager startMonitoringForRegion:self.myBeaconRegion];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
 {
-    [super setSelected:selected animated:animated];
+    [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
+    self.statusLabel.text = @"Yes";
+}
 
-    // Configure the view for the selected state
+-(void)locationManager:(CLLocationManager*)manager didExitRegion:(CLRegion*)region
+{
+    [self.locationManager stopRangingBeaconsInRegion:self.myBeaconRegion];
+    self.statusLabel.text = @"No";
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
