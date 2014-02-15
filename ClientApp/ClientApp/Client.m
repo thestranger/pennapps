@@ -10,14 +10,14 @@
 
 @implementation Client
 
-@synthesize present, firstName, lastName, uid;
+@synthesize present, first_Name, last_Name, uid;
 
 - (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p {
     self = [super init];
     if (self) {
         self.present = p;
-        self.firstName = fName;
-        self.lastName = lName;
+        self.first_Name = fName;
+        self.last_Name = lName;
         self.uid = cid;
     }
     return self;
