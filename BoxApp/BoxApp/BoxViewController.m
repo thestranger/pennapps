@@ -21,6 +21,12 @@
     //create UUID Object
     NSUUID *uuid= [[NSUUID alloc] initWithUUIDString: @"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
 
+    //initialize the Beacon Region
+    //subject to change
+    self.myBeaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
+                                                                  major:1
+                                                                  minor:1
+                                                            identifier:@"com.pennApps.entrance" ];
     
 }
 
