@@ -41,7 +41,8 @@
                                                              identifier:@"com.pennApps.entrance"];
     
     // Tell location manager to start monitoring for the beacon region
-    [self.locationManager startMonitoringForRegion:self.myBeaconRegion];
+    //[self.locationManager startMonitoringForRegion:self.myBeaconRegion];
+    [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
 }
 
 /* - (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
