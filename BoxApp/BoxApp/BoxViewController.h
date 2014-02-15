@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface BoxViewController : UIViewController
+@interface BoxViewController : UIViewController<CBPeripheralManagerDelegate>
+
+
+@property (weak, nonatomic) IBOutlet UISwitch *broadcastIsOn;
+
+@property (weak, nonatomic) IBOutlet UILabel *connectionNumberLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *bluetoothStatusLabel;
+
+@property (strong, nonatomic) CLBeaconRegion *myBeaconRegion;
+
+@property (strong, nonatomic) NSDictionary *myBeaconDictionary;
+
+@property (strong, nonatomic) CBPeripheralManager *peripheralManager;
 
 @end
