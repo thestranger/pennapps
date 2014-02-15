@@ -92,6 +92,7 @@
     NSInteger n = foundBeacon.rssi;
     if (n == 0) {
         self.statusLabel.text = @"No";
+        
     } else {
         self.statusLabel.text = @"Yes";
     }
