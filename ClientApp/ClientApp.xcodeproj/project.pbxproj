@@ -23,6 +23,7 @@
 		673F817918AF1D1400E3E975 /* ClientAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 673F817818AF1D1400E3E975 /* ClientAppTests.m */; };
 		87C625FA18AF27E1006588DE /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C625F918AF27E1006588DE /* StatusView.m */; };
 		87C625FC18AF2970006588DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C625FB18AF2970006588DE /* CoreLocation.framework */; };
+		87C6323518AF4B21006588DE /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6323418AF4B21006588DE /* Client.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		87C625F818AF27E1006588DE /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		87C625F918AF27E1006588DE /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		87C625FB18AF2970006588DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		87C6323318AF4B21006588DE /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		87C6323418AF4B21006588DE /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 		673F815318AF1D1300E3E975 /* ClientApp */ = {
 			isa = PBXGroup;
 			children = (
+				87C6323318AF4B21006588DE /* Client.h */,
+				87C6323418AF4B21006588DE /* Client.m */,
 				673F815C18AF1D1400E3E975 /* ClientAppDelegate.h */,
 				673F815D18AF1D1400E3E975 /* ClientAppDelegate.m */,
 				673F815F18AF1D1400E3E975 /* Main.storyboard */,
@@ -209,6 +214,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = pennApps;
 				TargetAttributes = {
+					673F814918AF1D1300E3E975 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					673F816A18AF1D1400E3E975 = {
 						TestTargetID = 673F814918AF1D1300E3E975;
 					};
@@ -263,6 +275,7 @@
 				673F815E18AF1D1400E3E975 /* ClientAppDelegate.m in Sources */,
 				87C625FA18AF27E1006588DE /* StatusView.m in Sources */,
 				673F816418AF1D1400E3E975 /* ClientViewController.m in Sources */,
+				87C6323518AF4B21006588DE /* Client.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
