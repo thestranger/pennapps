@@ -26,7 +26,7 @@
     
     // Setup a new region with that UUID and same identifier as the broadcasting beacon
     self.myBeaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
-                                                             identifier:@"com.appcoda.testregion"];
+                                                             identifier:@"com.pennApps.entrance"];
     
     // Tell location manager to start monitoring for the beacon region
     [self.locationManager startMonitoringForRegion:self.myBeaconRegion];
