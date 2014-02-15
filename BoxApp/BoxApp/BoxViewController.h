@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) CLBeaconRegion *myBeaconRegion;
 
-@property (strong, nonatomic) NSDictionary *myBeaconDictionary;
+@property (strong, nonatomic) NSDictionary *myBeaconData;
 
 @property (strong, nonatomic) CBPeripheralManager *peripheralManager;
 

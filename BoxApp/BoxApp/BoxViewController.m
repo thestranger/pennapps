@@ -21,6 +21,12 @@
     //create UUID Object
     NSUUID *uuid= [[NSUUID alloc] initWithUUIDString: @"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
 
+    //initialize the Beacon Region
+    //subject to change
+    self.myBeaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
+                                                                  major:1
+                                                                  minor:1
+                                                            identifier:@"com.pennApps.entrance" ];
     
 }
 
@@ -31,6 +37,42 @@
 }
 
 - (IBAction)switchSwitched:(id)sender {
+    
+    //if switch = true
+    //        turn on broadcast
+    //if switch = false
+    //         turn off broadcast
+    // FOR NOW, IT CAN ONLY BE TURNED ON
+    
+    self.myBeaconData = [self.myBeaconRegion peripheralDataWithMeasuredPower:nil];
+    
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
+}
+
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
+{
+    if (peripheral.state == CBPeripheralManagerStatePoweredOn)
+    {
+        //Bluetooth is on
+        
+        //update our status label
+        self.bluetoothStatusLabel.text = @"Bluetooth Status: On";
+        
+        //Start broadcasting
+        [self.peripheralManager startAdvertising:self.myBeaconData];
+    }
+    else if (peripheral.state == CBPeripheralManagerStatePoweredOff)
+    {
+        //Update our status label
+        self.bluetoothStatusLabel.text = @"Bluetooth Status: Off";
+        
+        //Bluetooth isn't on. Stop broadcasting
+        [self.peripheralManager stopAdvertising];
+    }
+    else if (peripheral.state == CBPeripheralManagerStateUnsupported)
+    {
+        self.bluetoothStatusLabel.text = @"This device does not support Bluetooth";
+    }
 }
 
 @end
