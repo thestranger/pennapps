@@ -51,7 +51,7 @@
     self.statusLabel.text = @"Yes";
 } */
 
-- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+/* - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
     NSString *resourcePath = [NSString stringWithFormat:POSTNEWCLIENTSTATUS];
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
@@ -73,7 +73,7 @@
         self.client.present = FALSE;
     }
     
-}
+} */
 
 /* -(void)locationManager:(CLLocationManager*)manager didExitRegion:(CLRegion*)region
 {
