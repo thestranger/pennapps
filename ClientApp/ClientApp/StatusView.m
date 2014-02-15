@@ -44,6 +44,21 @@
     self.statusLabel.text = @"No";
 }
 
+/* -(void)locationManager:(CLLocationManager*)manager
+       didRangeBeacons:(NSArray*)beacons
+              inRegion:(CLBeaconRegion*)region
+{
+    // Beacon found!
+    self.statusLabel.text = @"Beacon found!";
+    
+    CLBeacon *foundBeacon = [beacons firstObject];
+    
+    // You can retrieve the beacon data from its properties
+    //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
+    //NSString *major = [NSString stringWithFormat:@"%@", foundBeacon.major];
+    //NSString *minor = [NSString stringWithFormat:@"%@", foundBeacon.minor];
+} */
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
