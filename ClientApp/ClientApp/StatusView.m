@@ -62,7 +62,10 @@
     //self.statusLabel.text = @"Beacon found!";
     
     CLBeacon *foundBeacon = [beacons firstObject];
-    
+    NSInteger n = foundBeacon.rssi;
+    if (n == 0) {
+        
+    }
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
     //NSString *major = [NSString stringWithFormat:@"%@", foundBeacon.major];
