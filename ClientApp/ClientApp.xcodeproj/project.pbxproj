@@ -22,6 +22,7 @@
 		673F817718AF1D1400E3E975 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 673F817518AF1D1400E3E975 /* InfoPlist.strings */; };
 		673F817918AF1D1400E3E975 /* ClientAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 673F817818AF1D1400E3E975 /* ClientAppTests.m */; };
 		87C625FA18AF27E1006588DE /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C625F918AF27E1006588DE /* StatusView.m */; };
+		87C625FC18AF2970006588DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C625FB18AF2970006588DE /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		673F817818AF1D1400E3E975 /* ClientAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientAppTests.m; sourceTree = "<group>"; };
 		87C625F818AF27E1006588DE /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		87C625F918AF27E1006588DE /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
+		87C625FB18AF2970006588DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		87C6273E18AF36E7006588DE /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = "../../../../../../Downloads/RestKit-0.20.3/RestKit.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C625FC18AF2970006588DE /* CoreLocation.framework in Frameworks */,
 				673F815018AF1D1300E3E975 /* CoreGraphics.framework in Frameworks */,
 				673F815218AF1D1300E3E975 /* UIKit.framework in Frameworks */,
 				673F814E18AF1D1300E3E975 /* Foundation.framework in Frameworks */,
@@ -85,6 +89,7 @@
 		673F814118AF1D1300E3E975 = {
 			isa = PBXGroup;
 			children = (
+				87C6273E18AF36E7006588DE /* RestKit.xcodeproj */,
 				673F815318AF1D1300E3E975 /* ClientApp */,
 				673F817218AF1D1400E3E975 /* ClientAppTests */,
 				673F814C18AF1D1300E3E975 /* Frameworks */,
@@ -104,6 +109,7 @@
 		673F814C18AF1D1300E3E975 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87C625FB18AF2970006588DE /* CoreLocation.framework */,
 				673F814D18AF1D1300E3E975 /* Foundation.framework */,
 				673F814F18AF1D1300E3E975 /* CoreGraphics.framework */,
 				673F815118AF1D1300E3E975 /* UIKit.framework */,
@@ -343,6 +349,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -375,6 +385,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -387,6 +401,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClientApp/ClientApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
+				);
 				INFOPLIST_FILE = "ClientApp/ClientApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -400,6 +419,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClientApp/ClientApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
+				);
 				INFOPLIST_FILE = "ClientApp/ClientApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
