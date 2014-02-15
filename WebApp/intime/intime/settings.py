@@ -53,6 +53,7 @@ ROOT_URLCONF = 'intime.urls'
 
 WSGI_APPLICATION = 'intime.wsgi.application'
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
