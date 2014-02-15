@@ -63,7 +63,7 @@
         
         //update our status label
         self.bluetoothStatusLabel.text = @"Bluetooth Status: On";
-        
+        _broadcastIsOn.enabled =YES;
         //Start broadcasting
  //       [self.peripheralManager startAdvertising:self.myBeaconData];
     }
@@ -72,12 +72,15 @@
         //Update our status label
         self.bluetoothStatusLabel.text = @"Bluetooth Status: Off";
         
+        _broadcastIsOn.enabled =NO;
+        
         //Bluetooth isn't on. Stop broadcasting
         [self.peripheralManager stopAdvertising];
     }
     else if (peripheral.state == CBPeripheralManagerStateUnsupported)
     {
-        self.bluetoothStatusLabel.text = @"This device does not support Bluetooth";
+        self.bluetoothStatusLabel.text = @"Bluetooth Not Supported";
+        _broadcastIsOn.enabled =NO;
     }
 }
 
