@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', views.login, name='login'),
     #The main page should check to see if the user is authenticated, if s/he is. Direct to login, otherwise direct to main.
     url(r'^index$', views.index, name='index'),
-    url(r'^employees$', views.employees, name='employees'),
-    url(r'^workplace$', views.employees, name='workplace'),
+    url(r'^workplace$', views.workplace, name='workplace'),
+    url(r'^search$', views.search, name='search'),
+    url(r'^employee/(?P<employee_uid>\w+)', views.employee, name='search'),
 )
