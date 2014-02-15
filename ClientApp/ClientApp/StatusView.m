@@ -24,6 +24,10 @@
     // Create a NSUUID with the same UUID as the broadcasting beacon
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
     
+    // Setup a new region with that UUID and same identifier as the broadcasting beacon
+    self.myBeaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
+                                                             identifier:@"com.appcoda.testregion"];
+    
     // Tell location manager to start monitoring for the beacon region
     [self.locationManager startMonitoringForRegion:self.myBeaconRegion];
 }
