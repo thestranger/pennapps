@@ -6,9 +6,23 @@
 </head>
 <body>
 		<div id="header">
-			name <button>Main</button> <button>Workplace</button> <input></input><button>Search</button> 
+			name 
+			<form action="/index">
+				<button>Home</button>
+			</form>
+			<form action="/search/" method='POST'>{% csrf_token %}
+				<input name='query'></input>
+				<input type="submit" value="search"></input>
+			</form>
 		</div>
 		<div id="container">
-			Employee
+			{% if employee %}
+			<ul>
+				<li>UID: {{ employee.uid }}</li> 
+				<li>Name: {{ employee.first_name }} {{ employee.last_name }}</li>
+				<li>Email: {{ employee.email }}</li>
+				<li>Phone: {{ employee.phone }}</li>
+			</ul>
+			{% endif %}
 		</div>
 </body>

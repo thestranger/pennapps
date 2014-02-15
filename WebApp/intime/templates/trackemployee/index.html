@@ -6,13 +6,20 @@
 </head>
 <body>
 		<div id="header">
-			name <button>Home</button> <button>workplace visualized</button> <input></input><button>search employee</button> 
+			name 
+			<form action="/index">
+				<button>Home</button>
+			</form>
+			<form action="/search/" method='POST'>{% csrf_token %}
+				<input name='query'></input>
+				<input type="submit" value="search"></input>
+			</form>
 		</div>
 		<div id="container">
 			<form action="" method="post">{% csrf_token %}
-				<select selected="{{ filter }}"  name="employee_filter" onchange='this.form.submit()'>
+				<select name="employee_filter" id="select_value" onchange='this.form.submit()'>
 					<option>Select a filter</option>
-					<option value='all'>All Employees</option>
+					<option value='all' >All Employees</option>
 					<option value='present'>Present Employees</option>
 					<option value='absent'>Absent Employees</option>
 				</select>
@@ -21,7 +28,7 @@
 			{% if employees %}
 			<ul>
 				{% for employee in employees %}
-					<li><a href="employee/{{ employee.uid }}">{{ employee.uid }}</a> {{ employee.last_name }} {{ employee.first_name }}</li>
+					<li><a href="/employee/{{ employee.uid }}">{{ employee.uid }}</a> {{ employee.last_name }} {{ employee.first_name }}</li>
 				{% endfor %}
 			</ul>
 			{% endif %}

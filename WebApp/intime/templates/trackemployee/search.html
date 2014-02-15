@@ -6,8 +6,25 @@
 </head>
 <body>
 		<div id="header">
-			name <button>Main</button> <button>Workplace</button> <input></input><button>Search</button> 
+			name 
+			<form action="/index">
+				<button>Home</button>
+			</form>
+			<form action="/search/" method='POST'>{% csrf_token %}
+				<input name='query'></input>
+				<input type="submit" value="search"></input>
+			</form>
 		</div>
-		Search Results
+		<div id="container">
+			{% if employees %}
+			<ul>
+				{% for employee in employees %}
+					<li><a href="/employee/{{ employee.uid }}">{{ employee.uid }}</a> {{ employee.last_name }} {{ employee.first_name }}</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+				No results found!
+			{% endif %}
+		</div>
 
 </body>
