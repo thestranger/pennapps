@@ -26,7 +26,7 @@
     
     // Setup a new region with that UUID and same identifier as the broadcasting beacon
     self.myBeaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
-                                                             identifier:@"com.appcoda.testregion"];
+                                                             identifier:@"com.pennApps.entrance"];
     
     // Tell location manager to start monitoring for the beacon region
     [self.locationManager startMonitoringForRegion:self.myBeaconRegion];
@@ -43,6 +43,21 @@
     [self.locationManager stopRangingBeaconsInRegion:self.myBeaconRegion];
     self.statusLabel.text = @"No";
 }
+
+/* -(void)locationManager:(CLLocationManager*)manager
+       didRangeBeacons:(NSArray*)beacons
+              inRegion:(CLBeaconRegion*)region
+{
+    // Beacon found!
+    self.statusLabel.text = @"Beacon found!";
+    
+    CLBeacon *foundBeacon = [beacons firstObject];
+    
+    // You can retrieve the beacon data from its properties
+    //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
+    //NSString *major = [NSString stringWithFormat:@"%@", foundBeacon.major];
+    //NSString *minor = [NSString stringWithFormat:@"%@", foundBeacon.minor];
+} */
 
 - (void)didReceiveMemoryWarning
 {

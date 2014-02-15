@@ -1,3 +1,15 @@
 from django.db import models
 
-# Create your models here.
+
+class Employee(models.Model):
+    """docstring for Employee"""
+    present = models.BooleanField()
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    uid = models.CharField(max_length=100)
+
+
+class TimeLog(models.Model):
+    employee = models.ForeignKey(Employee)
+    time_in = models.DateTimeField()
+    time_out = models.DateTimeField()
