@@ -117,6 +117,7 @@
     
     [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Posted object with the following result: %@", mappingResult);
+        NSLog(@"WHOOOOOO!!!!");
     } failure:nil];
     
      /*:self.client usingBlock:^(RKObjectLoader *loader) {
