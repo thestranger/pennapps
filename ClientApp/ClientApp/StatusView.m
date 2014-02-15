@@ -59,7 +59,7 @@
               inRegion:(CLBeaconRegion*)region
 {
     // Beacon found!
-    self.statusLabel.text = @"Beacon found!";
+    //self.statusLabel.text = @"Beacon found!";
     
     CLBeacon *foundBeacon = [beacons firstObject];
     
