@@ -15,7 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *broadcastIsOn;
 
-@property (weak, nonatomic) IBOutlet UILabel *connectionNumberLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *broadcastImage;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *bluetoothStatusLabel;
 

@@ -54,10 +54,12 @@
     if (!_broadcastIsOn.isOn)
     {
         [self.peripheralManager stopAdvertising];
+        [_broadcastImage setHighlighted:(FALSE)];
     }
     else if (_broadcastIsOn.isOn)
     {
         [self.peripheralManager startAdvertising:self.myBeaconData];
+        [_broadcastImage setHighlighted:(TRUE)];
     }
         
 }
