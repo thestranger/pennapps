@@ -6,7 +6,9 @@ class Employee(models.Model):
     present = models.BooleanField()
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    uid = models.CharField(max_length=100)
+    uid = models.CharField(max_length=100, primary_key=True)
+    email = models.EmailField(max_length=75)
+    phone = models.IntegerField(max_length=10, unique=True)
 
 
 class TimeLog(models.Model):
