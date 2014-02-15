@@ -24,7 +24,9 @@
 
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
-
+#import <Security/Security.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import <Availability.h>
 
 #ifdef _SYSTEMCONFIGURATION_H

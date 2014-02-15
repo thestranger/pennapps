@@ -31,6 +31,7 @@
 		87C6365018AF525E006588DE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C6364F18AF525E006588DE /* QuartzCore.framework */; };
 		87C6365218AF5264006588DE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C6365118AF5264006588DE /* Security.framework */; };
 		87C6365418AF526D006588DE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C6365318AF526D006588DE /* SystemConfiguration.framework */; };
+		87C6368018AFC171006588DE /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C6366518AF53CD006588DE /* libRestKit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		87C6365118AF5264006588DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		87C6365318AF526D006588DE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		87C6365D18AF53CD006588DE /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = "RestKit-0.20.3/RestKit.xcodeproj"; sourceTree = "<group>"; };
+		87C6366E18AFB261006588DE /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C6368018AFC171006588DE /* libRestKit.a in Frameworks */,
 				87C6365418AF526D006588DE /* SystemConfiguration.framework in Frameworks */,
 				87C6365218AF5264006588DE /* Security.framework in Frameworks */,
 				87C6365018AF525E006588DE /* QuartzCore.framework in Frameworks */,
@@ -196,6 +199,7 @@
 				673F816318AF1D1400E3E975 /* ClientViewController.m */,
 				87C625F818AF27E1006588DE /* StatusView.h */,
 				87C625F918AF27E1006588DE /* StatusView.m */,
+				87C6366E18AFB261006588DE /* Resources.h */,
 				673F816518AF1D1400E3E975 /* Images.xcassets */,
 				673F815418AF1D1300E3E975 /* Supporting Files */,
 			);
@@ -479,7 +483,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -512,7 +519,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

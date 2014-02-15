@@ -7,10 +7,21 @@
 //
 
 #import "StatusView.h"
+#import "Resources.h"
+
+#include <Security/Security.h>
+#include <RestKit/RestKit.h>
+#include <MobileCoreServices/MobileCoreServices.h>
+#include <SystemConfiguration/SystemConfiguration.h>
+
+#import <Security/Security.h>
+#import <RestKit/RestKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @implementation StatusView
 
-@synthesize statusLabel, locationManager, myBeaconRegion;
+@synthesize statusLabel, locationManager, myBeaconRegion, client;
 
 - (void)viewDidLoad
 {
@@ -40,9 +51,14 @@
 } */
 
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+    NSString *resourcePath = [NSString stringWithFormat:POSTNEWCLIENTSTATUS];
+    
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
+    
     if (state == CLRegionStateInside) {
         self.statusLabel.text = @"Yes";
-    } else {
+    } else if (state == CLRegionStateOutside || state == CLRegionStateUnknown){
         self.statusLabel.text = @"No";
     }
     

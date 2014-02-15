@@ -33,6 +33,9 @@
 #import "RKPaginator.h"
 #import "RKDynamicMapping.h"
 #import "RKRelationshipMapping.h"
+#import <Security/Security.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #if !__has_feature(objc_arc)
 #error RestKit must be built with ARC.

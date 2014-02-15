@@ -24,6 +24,9 @@
 #import "RKMacros.h"
 #import "AFNetworking.h"
 #import "RKManagedObjectRequestOperation.h"
+#import <Security/Security.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @protocol RKSerialization;
 @class RKManagedObjectStore, RKObjectRequestOperation, RKManagedObjectRequestOperation,
