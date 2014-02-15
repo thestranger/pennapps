@@ -27,7 +27,11 @@
                                                                   major:1
                                                                   minor:1
                                                             identifier:@"com.pennApps.entrance" ];
+    //test
+    self.myBeaconData = [self.myBeaconRegion peripheralDataWithMeasuredPower:nil];
     
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
+    //endTest
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,9 +48,11 @@
     //         turn off broadcast
     // FOR NOW, IT CAN ONLY BE TURNED ON
     
-    self.myBeaconData = [self.myBeaconRegion peripheralDataWithMeasuredPower:nil];
+//    self.myBeaconData = [self.myBeaconRegion peripheralDataWithMeasuredPower:nil];
     
-    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
+//    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
+    
+    [self.peripheralManager startAdvertising:self.myBeaconData];
 }
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
@@ -59,7 +65,7 @@
         self.bluetoothStatusLabel.text = @"Bluetooth Status: On";
         
         //Start broadcasting
-        [self.peripheralManager startAdvertising:self.myBeaconData];
+ //       [self.peripheralManager startAdvertising:self.myBeaconData];
     }
     else if (peripheral.state == CBPeripheralManagerStatePoweredOff)
     {
