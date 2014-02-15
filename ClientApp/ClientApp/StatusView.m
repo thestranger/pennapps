@@ -55,11 +55,21 @@
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
+    //[objectManager.requestCache invalidateAll];
+    
+    RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
+
+
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"firstName", @"first_name", @"lastName", @"last_Name", @"uid", @"uid", nil];
+    
+    [clientMapping addAttributeMappingsFromDictionary:dictionary];
     
     if (state == CLRegionStateInside) {
         self.statusLabel.text = @"Yes";
+        self.client.present = TRUE;
     } else if (state == CLRegionStateOutside || state == CLRegionStateUnknown){
         self.statusLabel.text = @"No";
+        self.client.present = FALSE;
     }
     
 }
@@ -80,7 +90,9 @@
     CLBeacon *foundBeacon = [beacons firstObject];
     NSInteger n = foundBeacon.rssi;
     if (n == 0) {
-        
+        self.statusLabel.text = @"No";
+    } else {
+        self.statusLabel.text = @"Yes";
     }
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
