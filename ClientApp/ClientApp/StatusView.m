@@ -38,6 +38,15 @@
     self.statusLabel.text = @"Yes";
 }
 
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+    if (state == CLRegionStateInside) {
+        self.statusLabel.text = @"Yes";
+    } else {
+        self.statusLabel.text = @"No";
+    }
+    
+}
+
 -(void)locationManager:(CLLocationManager*)manager didExitRegion:(CLRegion*)region
 {
     [self.locationManager stopRangingBeaconsInRegion:self.myBeaconRegion];

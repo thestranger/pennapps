@@ -10,7 +10,7 @@
 
 @interface Client : NSObject
 
-@property (strong, nonatomic) NSString *present;
+@property bool present;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *uid;

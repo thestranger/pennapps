@@ -15,9 +15,7 @@
 - (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p {
     self = [super init];
     if (self) {
-        if (p) {
-            self.present = [NSString stringWithFormat:@"YES"];
-        }
+        self.present = p;
         self.firstName = fName;
         self.lastName = lName;
         self.uid = cid;
