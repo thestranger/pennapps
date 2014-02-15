@@ -17,13 +17,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    //create UUID Object
+    NSUUID *uuid= [[NSUUID alloc] initWithUUIDString: @"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
+
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)switchSwitched:(id)sender {
 }
 
 @end

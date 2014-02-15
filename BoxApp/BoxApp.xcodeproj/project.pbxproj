@@ -21,6 +21,8 @@
 		673F812E18AF1C8300E3E975 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673F811018AF1C8300E3E975 /* UIKit.framework */; };
 		673F813618AF1C8300E3E975 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 673F813418AF1C8300E3E975 /* InfoPlist.strings */; };
 		673F813818AF1C8300E3E975 /* BoxAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 673F813718AF1C8300E3E975 /* BoxAppTests.m */; };
+		673F818318AF2A0500E3E975 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673F818218AF2A0500E3E975 /* CoreBluetooth.framework */; };
+		673F818518AF2A1600E3E975 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673F818418AF2A1600E3E975 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		673F813318AF1C8300E3E975 /* BoxAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BoxAppTests-Info.plist"; sourceTree = "<group>"; };
 		673F813518AF1C8300E3E975 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		673F813718AF1C8300E3E975 /* BoxAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxAppTests.m; sourceTree = "<group>"; };
+		673F818218AF2A0500E3E975 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		673F818418AF2A1600E3E975 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				673F818518AF2A1600E3E975 /* CoreLocation.framework in Frameworks */,
+				673F818318AF2A0500E3E975 /* CoreBluetooth.framework in Frameworks */,
 				673F810F18AF1C8300E3E975 /* CoreGraphics.framework in Frameworks */,
 				673F811118AF1C8300E3E975 /* UIKit.framework in Frameworks */,
 				673F810D18AF1C8300E3E975 /* Foundation.framework in Frameworks */,
@@ -101,6 +107,8 @@
 		673F810B18AF1C8300E3E975 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				673F818418AF2A1600E3E975 /* CoreLocation.framework */,
+				673F818218AF2A0500E3E975 /* CoreBluetooth.framework */,
 				673F810C18AF1C8300E3E975 /* Foundation.framework */,
 				673F810E18AF1C8300E3E975 /* CoreGraphics.framework */,
 				673F811018AF1C8300E3E975 /* UIKit.framework */,
@@ -112,8 +120,6 @@
 		673F811218AF1C8300E3E975 /* BoxApp */ = {
 			isa = PBXGroup;
 			children = (
-				673F811B18AF1C8300E3E975 /* BoxAppDelegate.h */,
-				673F811C18AF1C8300E3E975 /* BoxAppDelegate.m */,
 				673F811E18AF1C8300E3E975 /* Main.storyboard */,
 				673F812118AF1C8300E3E975 /* BoxViewController.h */,
 				673F812218AF1C8300E3E975 /* BoxViewController.m */,
@@ -126,6 +132,8 @@
 		673F811318AF1C8300E3E975 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				673F811B18AF1C8300E3E975 /* BoxAppDelegate.h */,
+				673F811C18AF1C8300E3E975 /* BoxAppDelegate.m */,
 				673F811418AF1C8300E3E975 /* BoxApp-Info.plist */,
 				673F811518AF1C8300E3E975 /* InfoPlist.strings */,
 				673F811818AF1C8300E3E975 /* main.m */,
@@ -461,6 +469,7 @@
 				673F813D18AF1C8300E3E975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		673F813E18AF1C8300E3E975 /* Build configuration list for PBXNativeTarget "BoxAppTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +478,7 @@
 				673F814018AF1C8300E3E975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
