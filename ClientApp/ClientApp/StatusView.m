@@ -20,6 +20,7 @@
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    self.locationManager.pausesLocationUpdatesAutomatically=NO;
     
     // Create a NSUUID with the same UUID as the broadcasting beacon
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
@@ -53,7 +54,7 @@
     self.statusLabel.text = @"No";
 }
 
-/* -(void)locationManager:(CLLocationManager*)manager
+-(void)locationManager:(CLLocationManager*)manager
        didRangeBeacons:(NSArray*)beacons
               inRegion:(CLBeaconRegion*)region
 {
@@ -66,7 +67,7 @@
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
     //NSString *major = [NSString stringWithFormat:@"%@", foundBeacon.major];
     //NSString *minor = [NSString stringWithFormat:@"%@", foundBeacon.minor];
-} */
+}
 
 - (void)didReceiveMemoryWarning
 {
