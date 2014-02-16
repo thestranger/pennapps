@@ -37,7 +37,7 @@ class StatusResource(ModelResource):
                     'reason' : 'Status has not been changed',
                     }, HttpUnauthorized)
         
-        employee = Employee.objects.get(user_=uid)
+        employee = Employee.objects.get(user_id=uid)
         employee.present = status
         employee.save()
         logger.info(type(uid))
