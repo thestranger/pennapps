@@ -19,4 +19,6 @@
 
 - (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p password:(NSString *)pw username:(NSString *)un;
 
+//- (Client *)initWithId:(NSString *)cid username:(NSString *)uName password:(NSString *)pw;
+
 @end
