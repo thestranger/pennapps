@@ -10,19 +10,20 @@
 
 @implementation Client
 
-@synthesize present, first_Name, last_Name, uid, username, password;
+@synthesize username, password; //present, first_Name, last_Name, uid, username, password;
 
-- (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p password:(NSString *)pw username:(NSString *)un {
+ - (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p password:(NSString *)pw username:(NSString *)un {
     self = [super init];
     if (self) {
-        self.present = p;
-        self.first_Name = fName;
-        self.last_Name = lName;
-        self.uid = cid;
+        //self.present = p;
+        //self.first_Name = fName;
+        //self.last_Name = lName;
+        //self.uid = cid;
         self.username = un;
         self.password = pw;
     }
     return self;
 }
+
 
 @end

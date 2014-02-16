@@ -30,6 +30,8 @@
     
     self.client = [[Client alloc] initWithId:@"2500" firstName:@"Jon" lastName:@"Chen" present:YES password:@"password" username:@"Chenny_Chen_Chen"];
     
+    //self.client = [[Client alloc] initWithId:@"2500" username:@"Chenny_Chen_Chen" password:@"password"];
+    
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -55,6 +57,7 @@
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     
     objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
@@ -62,9 +65,9 @@
     //RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
     [requestMapping addAttributeMappingsFromDictionary:@{@"username":@"username", @"password":@"password"}];
-    NSString *s = [NSString stringWithFormat:@"%@%@", BASEURL, POSTNEWCLIENTSTATUS];
+    //NSString *s = [NSString stringWithFormat:@"%@%@", BASEURL, POSTNEWCLIENTSTATUS];
     [objectManager addRequestDescriptor:
-     [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:POSTNEWCLIENTSTATUS method:RKRequestMethodPOST]];
+     [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:nil method:RKRequestMethodPOST]];
      //[RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:POSTLOGIN]];
     
     [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -73,6 +76,7 @@
         self.statusLabel.text = @"YAY";
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Whut");
+        NSLog(@"%@", [error userInfo]);
         self.statusLabel.text = @"=(";
     }];
     
@@ -124,7 +128,7 @@
     // Beacon found!
     //self.statusLabel.text = @"Beacon found!";
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@",BASEURL, POSTNEWCLIENTSTATUS];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASEURL, POSTNEWCLIENTSTATUS];
     NSURL *url = [NSURL URLWithString:urlString];
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
     objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
@@ -132,9 +136,15 @@
     
     RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
     
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"first_Name", @"first_name", @"last_Name", @"last_Name", @"uid", @"uid", nil];
+    /*NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"first_Name", @"first_name", @"last_Name", @"last_Name", @"uid", @"uid", @"present", @"present", nil]; */
     
-    [clientMapping addAttributeMappingsFromDictionary:dictionary];
+    [clientMapping addAttributeMappingsFromDictionary:
+     @{@"uid": @"id",
+       @"password": @"password",
+       @"username": @"username",
+       @"firstName": @"first_name",
+       @"lastName": @"last_nname",
+       @"present": @"isActive"}];
     
     CLBeacon *foundBeacon = [beacons firstObject];
     NSInteger n = foundBeacon.rssi;
