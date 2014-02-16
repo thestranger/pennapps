@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=utf-8" />
-<title>Main</title>
-</head>
+	<head>
+		<meta charset=utf-"8" />
+		<link type="text/css" rel="stylesheet" href="bootstrap/css/style.css" />
+		<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<link href="index.css" rel="stylesheet">
+		<title>Main</title>
+	</head>
 <body>
+
+	    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">InTime</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/index">Home</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" action="/search/" method='POST'>{% CSRF_TOKEN %} 
+            <input type="text" value="search" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+<!--
 		<div id="header">
 			name 
 			<form action="/index">
@@ -15,6 +43,43 @@
 				<input type="submit" value="search"></input>
 			</form>
 		</div>
+
+-->
+
+
+
+
+<!--
+	<div class="dropdown">
+	  <button class="btn dropdown-toggle sr-only" type="button" data-toggle="dropdown">
+	    Select a filter
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" name="employee_filter" id="select_value" onchange='this.form.submit()'>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" value='all'>All Employees</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" value='present'>Present Employees</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" value='absent'>Absent Employees</a></li>
+	  </ul>
+	</div>
+
+-->
+<div class="dropdown">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
+</div>
+
+
+
+<!--
 		<div id="container">
 			<form action="" method="post">{% csrf_token %}
 				<select name="employee_filter" id="select_value" onchange='this.form.submit()'>
@@ -25,6 +90,11 @@
 				</select>
 				<noscript><input type="submit" value="Submit"></noscript>
 			</form>
+
+-->
+
+
+
 			{% if employees %}
 			<ul>
 				{% for employee in employees %}
