@@ -18,6 +18,7 @@
     
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASEURL]];
     if (objectManager) {
+        objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
         NSLog(@"AppDelegate: RestKit initialized with base URL: %@", BASEURL);
     }
     

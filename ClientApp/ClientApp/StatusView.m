@@ -34,7 +34,15 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     //self.locationManager.pausesLocationUpdatesAutomatically=NO;
-    
+//    
+//    AFHTTPClient* client = [RKObjectManager sharedManager].HTTPClient;
+//    NSDictionary *headers = client.defaultHeaders;
+//    NSLog(@"Headers %d", headers.count);
+//    NSArray *arHeaders = headers.allKeys;
+//    NSArray *arValues = headers.allValues;
+//    for (int i=0; i < headers.count; i++)
+//    {
+//        NSLog(@"Header = %@; Value=%@", arHeaders[i], arValues[
     // Create a NSUUID with the same UUID as the broadcasting beacon
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
     
@@ -47,6 +55,7 @@
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    
     objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
