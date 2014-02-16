@@ -6,6 +6,8 @@ from django.shortcuts import render
 from trackemployee.models import Employee
 from django.http import HttpResponseRedirect
 from django.db.models import Q
+from trackemployee.models import TimeLog
+from datetime import date, datetime, timedelta
 
 # Create your views here.
 
@@ -63,11 +65,24 @@ def workplace(request):
     # context['employees'] = list(results)
     # return render(request, 'trackemployee/search.html', context)
 
+def perdelta(end, delta):
+    curr = end - timedelta(days=7)
+    while curr < end:
+        yield curr
+        curr += delta
+
+
+def get_days(end):
+    return [result for result in perdelta(end, timedelta(days=1))]
+
+
 def employee(request, user_id):
     if request.method == 'POST':
        return query_request(request)
     context = {}
     context['employee'] = Employee.objects.get(user_id=user_id)
+    context['time_logs'] = TimeLog.objects.filter(employee_id=user_id).order_by('time_in')
+    context['this_week'] = get_days(date.today())
     return render(request, 'trackemployee/employee.html', context)
 
     

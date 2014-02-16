@@ -1,3 +1,34 @@
-.bodycl {
-	font-weight: 600;
+.chart {
+	shape-rendering: crispEdges;
+}
+
+.mini text {
+	font: 9px sans-serif;	
+}
+
+.main text {
+	font: 12px sans-serif;	
+}
+
+.miniItem0 {
+	fill: green;
+	stroke-width: 6;	
+}
+
+.miniItem1 {
+	fill: green;
+	fill-opacity: .7;
+	stroke-width: 6;	
+}
+
+.miniItem2 {
+	fill: green;
+	fill-opacity: .7;
+	stroke-width: 6;	
+}
+
+.brush .extent {
+	stroke: gray;
+	fill: blue;
+	fill-opacity: .365;
 }
