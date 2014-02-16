@@ -20,15 +20,11 @@
 
 @synthesize userText, pwText, submitButton, client;
 
-- (void)viewWillAppear:(BOOL)animated {
-        self.pwText.secureTextEntry = YES;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    self.pwText.secureTextEntry = YES;
 }
 
 - (IBAction)submitButtonPressed:(id)sender {
@@ -53,7 +49,10 @@
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        [self performSegueWithIdentifier:@"toStatus" sender:self];
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Invalid login info." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        [alert show];
         NSLog(@"Response: %@", operation.response);
         NSLog(@"Error: %@", error);
     }];
@@ -72,9 +71,13 @@
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if (([self.pwText.text length] == 0) || ([self.userText.text length] == 0)) {
-        return NO;
-    } else {
+    if ([identifier isEqualToString:@"toStatus"]) {
+        if (([self.pwText.text length] == 0) || ([self.userText.text length] == 0)) {
+            return NO;
+        } else {
+            return YES;
+        }
+    }  else {
         return YES;
     }
 }
