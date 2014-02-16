@@ -298,7 +298,7 @@
 					673F814918AF1D1300E3E975 = {
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

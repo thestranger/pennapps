@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, include, url
 from trackemployee import views
-from trackemployee.api import EmployeeResource
+from trackemployee.api import EmployeeResource, StatusResource
 from django.contrib import admin
 admin.autodiscover()
 
 employee_resource = EmployeeResource()
+status_resource = StatusResource()
 
 urlpatterns = patterns('',
     # Examples:
@@ -18,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^index$', views.index, name='index'),
     url(r'^workplace$', views.workplace, name='workplace'),
     url(r'^search/(?P<query>(\w|\+)*)$', views.search, name='search'),
-    url(r'^employee/(?P<employee_uid>\d*)', views.employee, name='employee'),
-    url(r'^api/', include(employee_resource.urls))
+    url(r'^employee/(?P<user_id>\d*)', views.employee, name='employee'),
+    url(r'^api/', include(employee_resource.urls)),
+    url(r'^api/', include(status_resource.urls))
 )

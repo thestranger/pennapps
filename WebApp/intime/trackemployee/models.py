@@ -14,5 +14,5 @@ class Employee(models.Model):
 
 class TimeLog(models.Model):
     employee = models.ForeignKey(Employee)
-    time_in = models.DateTimeField()
-    time_out = models.DateTimeField()
+    time_in = models.DateTimeField(null=True, blank=True)
+    time_out = models.DateTimeField(null=True, blank=True)
