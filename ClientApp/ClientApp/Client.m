@@ -15,10 +15,10 @@
  - (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p password:(NSString *)pw username:(NSString *)un {
     self = [super init];
     if (self) {
-        //self.present = p;
-        //self.first_Name = fName;
-        //self.last_Name = lName;
-        //self.uid = cid;
+        self.present = p;
+        self.first_name = fName;
+        self.last_name = lName;
+        self.uid = cid;
         self.username = un;
         self.password = pw;
     }
