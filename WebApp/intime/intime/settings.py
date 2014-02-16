@@ -39,14 +39,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
-    'rest_framework',
+    # 'south',
+    #'rest_framework',
     'trackemployee',
-<<<<<<< HEAD
-
-=======
     'tastypie',
->>>>>>> a97c2696a90968d7d0c88070e92543fd95f07a90
 )
 
 MIDDLEWARE_CLASSES = (

@@ -8,6 +8,7 @@
 
 #import "StatusView.h"
 #import "Resources.h"
+#import <AFNetworking.h>
 
 @implementation StatusView
 
@@ -19,7 +20,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.client = [[Client alloc] initWithId:@"2500" firstName:@"Jon" lastName:@"Chen" present:YES password:@"password" username:@"Chenny_Chen_Chen"];
-    
     
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
@@ -34,6 +34,7 @@
     
     // Tell location manager to start monitoring for the beacon region
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
+
     
         
 }
@@ -92,6 +93,23 @@
         self.statusLabel.text = @"Yes";
         self.client.present = YES;
     }
+    
+    NSDictionary *parameters = @{@"username":self.client.username,@"password":self.client.password};
+    
+    AFHTTPRequestOperationManager *mngr = [AFHTTPRequestOperationManager manager];
+    mngr.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASEURL,POSTNEWCLIENTSTATUS];
+    
+    [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:urlString parameters:parameters error:nil];
+    
+    [mngr POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    }   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Response: %@", operation.response);
+        NSLog(@"Error: %@", error);
+    }];
+
     
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;

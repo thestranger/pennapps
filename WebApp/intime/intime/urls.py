@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     # if s/he is. Direct to login, otherwise direct to main.
     url(r'^index$', views.index, name='index'),
     url(r'^workplace$', views.workplace, name='workplace'),
-    url(r'^search/(?P<query>(\w|\+)*)$', views.search, name='search'),
+    # url(r'^search/(?P<query>(\w|\+)*)$', views.search, name='search'),
     url(r'^employee/(?P<user_id>\d*)', views.employee, name='employee'),
     url(r'^api/', include(employee_resource.urls)),
     url(r'^api/', include(status_resource.urls))
