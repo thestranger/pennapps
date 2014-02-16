@@ -11,7 +11,7 @@
 
 #define BASEURL @"http://107.170.44.163"
 #define POSTLOGIN @"/client/login"
-#define POSTNEWCLIENTSTATUS @"employee/login/"
+#define POSTNEWCLIENTSTATUS @"/api/employee/login/"
 #define GETCLIENTSTATUS @"/client/status"
 #define GETCLIENTLOGININFO @"/client"
 
