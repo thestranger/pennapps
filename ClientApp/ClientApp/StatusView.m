@@ -12,14 +12,14 @@
 
 @implementation StatusView
 
-@synthesize statusLabel, locationManager, myBeaconRegion, client;
+@synthesize statusLabel, locationManager, myBeaconRegion, client, imageView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.client = [[Client alloc] initWithId:@"2500" firstName:@"Jon" lastName:@"Chen" present:YES password:@"password" username:@"Chenny_Chen_Chen"];
+    //self.imageView = [[UIImageView alloc] initWithImage:[[UIImage alloc] initWithContentsOfFile:@"Image"]];
     
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
@@ -39,42 +39,6 @@
         
 }
 
-/* - (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
-{
-    [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
-    self.statusLabel.text = @"Yes";
-} */
-
-/* - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
-    NSString *resourcePath = [NSString stringWithFormat:POSTNEWCLIENTSTATUS];
-    
-    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-    objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
-    //[objectManager.requestCache invalidateAll];
-    
-    RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
-
-
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"firstName", @"first_name", @"lastName", @"last_Name", @"uid", @"uid", nil];
-    
-    [clientMapping addAttributeMappingsFromDictionary:dictionary];
-    
-    if (state == CLRegionStateInside) {
-        self.statusLabel.text = @"Yes";
-        self.client.present = TRUE;
-    } else if (state == CLRegionStateOutside || state == CLRegionStateUnknown){
-        self.statusLabel.text = @"No";
-        self.client.present = FALSE;
-    }
-    
-} */
-
-/* -(void)locationManager:(CLLocationManager*)manager didExitRegion:(CLRegion*)region
-{
-    [self.locationManager stopRangingBeaconsInRegion:self.myBeaconRegion];
-    self.statusLabel.text = @"No";
-} */
-
 -(void)locationManager:(CLLocationManager*)manager
        didRangeBeacons:(NSArray*)beacons
               inRegion:(CLBeaconRegion*)region
@@ -89,11 +53,18 @@
     if (n == 0) {
         self.statusLabel.text = @"Signed Out";
         self.client.present = NO;
+        self.imageView.image = [[UIImage alloc] initWithContentsOfFile:@"Image"];
     } else {
         self.statusLabel.text = @"Signed In";
         self.client.present = YES;
+        self.imageView.image = [[UIImage alloc] initWithContentsOfFile:@"broadcastActivated-1"];
     }
-    NSNumber *num = [[NSNumber alloc] initWithBool:self.client.present];
+    NSNumber *num = [NSNumber numberWithInt:0];
+    if (self.client.present) {
+        num = [NSNumber numberWithInt:1];
+    } else {
+        num = [NSNumber numberWithInt:0];
+    }
     
     NSDictionary *parameters = @{@"username":self.client.username,@"status":num};
     
@@ -107,6 +78,8 @@
     [mngr POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Error with user creation." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        [alert show];
         NSLog(@"Response: %@", operation.response);
         NSLog(@"Error: %@", error);
     }];

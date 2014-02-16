@@ -17,5 +17,6 @@
 @property (strong, nonatomic) CLBeaconRegion *myBeaconRegion;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Client *client;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
