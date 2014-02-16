@@ -9,16 +9,6 @@
 #import "StatusView.h"
 #import "Resources.h"
 
-#include <Security/Security.h>
-#include <RestKit/RestKit.h>
-#include <MobileCoreServices/MobileCoreServices.h>
-#include <SystemConfiguration/SystemConfiguration.h>
-
-#import <Security/Security.h>
-#import <RestKit/RestKit.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-#import <SystemConfiguration/SystemConfiguration.h>
-
 @implementation StatusView
 
 @synthesize statusLabel, locationManager, myBeaconRegion, client;
@@ -55,39 +45,6 @@
     // Tell location manager to start monitoring for the beacon region
     //[self.locationManager startMonitoringForRegion:self.myBeaconRegion];
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
-    
-    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
-    
-    objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    
-    //RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
-    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
-    [requestMapping addAttributeMappingsFromDictionary:
-     @{@"uid": @"id",
-       @"password": @"password",
-       @"username": @"username",
-       @"first_name": @"first_name",
-       @"last_name": @"last_name",
-       @"present": @"isActive"}];
-    //NSString *s = [NSString stringWithFormat:@"%@%@", BASEURL, POSTNEWCLIENTSTATUS];
-    [objectManager addRequestDescriptor:
-     [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:nil method:RKRequestMethodPOST]];
-     //[RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:POSTLOGIN]];
-    
-    [objectManager postObject:self.client path:[NSString stringWithFormat:@"%@/%@/%@/",POSTNEWCLIENTSTATUS,self.client.username,self.client.password] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSLog(@"Posted object with the following result: %@", mappingResult);
-        NSLog(@"WHOOOOOO!!!!");
-        self.statusLabel.text = @"YAY";
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Whut");
-        NSLog(@"%@", [error userInfo]);
-        self.statusLabel.text = @"=(";
-    }];
-    
-    
-    
     
 }
 
