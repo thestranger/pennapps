@@ -47,7 +47,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASEURL,POSTNEWCLIENTSTATUS];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASEURL,POSTLOGIN];
     
     [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:urlString parameters:parameters error:nil];
     

@@ -87,14 +87,15 @@
     CLBeacon *foundBeacon = [beacons firstObject];
     NSInteger n = foundBeacon.rssi;
     if (n == 0) {
-        self.statusLabel.text = @"No";
+        self.statusLabel.text = @"Signed Out";
         self.client.present = NO;
     } else {
-        self.statusLabel.text = @"Yes";
+        self.statusLabel.text = @"Signed In";
         self.client.present = YES;
     }
+    NSNumber *num = [[NSNumber alloc] initWithBool:self.client.present];
     
-    NSDictionary *parameters = @{@"username":self.client.username,@"password":self.client.password};
+    NSDictionary *parameters = @{@"username":self.client.username,@"status":num};
     
     AFHTTPRequestOperationManager *mngr = [AFHTTPRequestOperationManager manager];
     mngr.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -109,7 +110,6 @@
         NSLog(@"Response: %@", operation.response);
         NSLog(@"Error: %@", error);
     }];
-
     
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
