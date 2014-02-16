@@ -1,6 +1,7 @@
 import re
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from trackemployee.models import Employee
 from django.http import HttpResponseRedirect
@@ -45,7 +46,7 @@ def index(request):
         elif 'query' in request.POST.viewkeys():
             return query_request(request)
     else:
-        context['employees'] = Employee.objects.all().order_by('last_name')    
+        context['employees'] = User.objects.all().order_by('last_name')    
     return render(request, 'trackemployee/index.html', context)
     
     
