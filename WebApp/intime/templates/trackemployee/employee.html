@@ -84,9 +84,7 @@
 					{% endif %}
 				</h6>
 			{% endfor %}
-			{% for tl in this_week %}
-				<h6>{{ tl }}</h6>
-			{% endfor %}
+			{{ week_to_tl }}
 			<h4>Timeline</h4>
 			<div>
 				<script type="text/javascript">
@@ -95,7 +93,6 @@
 					"{{ tl }}",
 					{% endfor %}],
 			laneLength = lanes.length,
-			
 			items = [
 					{"lane": 1, "id": "Muromachi", "start": 1340, "end": 1560},
 					{"lane": 1, "id": "Edo", "start": 1610, "end": 1860},

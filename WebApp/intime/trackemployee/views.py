@@ -83,6 +83,7 @@ def employee(request, user_id):
     context['employee'] = Employee.objects.get(user_id=user_id)
     context['time_logs'] = TimeLog.objects.filter(employee_id=user_id).order_by('time_in')
     context['this_week'] = get_days(date.today())
+    context['week_to_tl'] = days_to_timeperiods(context['this_week'])
     return render(request, 'trackemployee/employee.html', context)
 
     
