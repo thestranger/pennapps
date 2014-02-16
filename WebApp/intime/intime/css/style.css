@@ -17,7 +17,7 @@
 
 .miniItem1 {
 	fill: green;
-	fill-opacity: .7;
+	fill-opacity: .8;
 	stroke-width: 6;	
 }
 
@@ -27,8 +27,31 @@
 	stroke-width: 6;	
 }
 
+.miniItem3 {
+	fill: green;
+	fill-opacity: .6;
+	stroke-width: 6;	
+}
+
+.miniItem4 {
+	fill: green;
+	fill-opacity: .7;
+	stroke-width: 6;	
+}
+
+.miniItem5 {
+	fill: green;
+	fill-opacity: .8;
+	stroke-width: 6;	
+}
+
+.miniItem6 {
+	fill: green;
+	stroke-width: 6;	
+}
+
 .brush .extent {
-	stroke: gray;
+	stroke: green;
 	fill: blue;
 	fill-opacity: .365;
 }
