@@ -1,17 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Employee(models.Model):
     """docstring for Employee"""
+    user = models.OneToOneField(User)
+    # from User have first_name, last_name, 
+    # email, username, password
     present = models.BooleanField()
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
     uid = models.CharField(max_length=100, primary_key=True)
-    email = models.EmailField(max_length=75)
     phone = models.CharField(max_length=12, unique=True)
 
 
 class TimeLog(models.Model):
     employee = models.ForeignKey(Employee)
-    time_in = models.DateTimeField()
-    time_out = models.DateTimeField()
+    time_in = models.DateTimeField(null=True, blank=True)
+    time_out = models.DateTimeField(null=True, blank=True)

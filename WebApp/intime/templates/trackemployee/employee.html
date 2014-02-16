@@ -1,28 +1,86 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8" />
+<meta charset="utf-8" />
 <title>Login</title>
+	<meta charset=utf-"8" />
+	<title>employee view</title>
+		<link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+		<link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}"/>
+		<link type="text/css" href="{% static "css/index.css" %}" rel="stylesheet">
 </head>
 <body>
-		<div id="header">
-			name 
-			<form action="/index">
-				<button>Home</button>
-			</form>
-			<form action="/search/" method='POST'>{% csrf_token %}
-				<input name='query'></input>
-				<input type="submit" value="search"></input>
-			</form>
-		</div>
-		<div id="container">
+
+
+
+	  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">InTime</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/index">Home</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" action="/search/" method='POST'>
+            <input type="text" value="search" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+		<div class="containr-fluid">
+			
 			{% if employee %}
 			<ul>
+				<li>ID: {{ employee.user_id }}
 				<li>UID: {{ employee.uid }}</li> 
-				<li>Name: {{ employee.first_name }} {{ employee.last_name }}</li>
-				<li>Email: {{ employee.email }}</li>
+				<li>Name: {{ employee.user.first_name }} {{ employee.last_name }}</li>
+				<li>Email: {{ employee.user.email }}</li>
 				<li>Phone: {{ employee.phone }}</li>
+				<li>Present: {{ employee.present }}</li>	
 			</ul>
+			<h2 class="sub-header">Employee Listing</h2>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>catagory</th>
+							<th>value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>UID:</th>
+							<th>{{ employee.uid }}</th>
+						</tr>
+						<tr>
+							<th>Name:</th>
+							<th>{{ employee.first_name }} {{ employee.last_name }}</th>
+						</tr>
+						<tr>
+							<th>Email:</th>
+							<th>{{ employee.email }}</th>
+						</tr>
+						<tr>
+							<th>Phone:</th>
+							<th>{{ employee.phone }}</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			{% endif %}
 		</div>
+
+
+			
 </body>

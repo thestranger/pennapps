@@ -9,16 +9,6 @@
 #import "StatusView.h"
 #import "Resources.h"
 
-#include <Security/Security.h>
-#include <RestKit/RestKit.h>
-#include <MobileCoreServices/MobileCoreServices.h>
-#include <SystemConfiguration/SystemConfiguration.h>
-
-#import <Security/Security.h>
-#import <RestKit/RestKit.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-#import <SystemConfiguration/SystemConfiguration.h>
-
 @implementation StatusView
 
 @synthesize statusLabel, locationManager, myBeaconRegion, client;
@@ -28,11 +18,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.client = [[Client alloc] initWithId:@"2500" firstName:@"Jon" lastName:@"Chen" present:YES password:@"password" username:@"Chenny_Chen_Chen"];
+    
+    
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.pausesLocationUpdatesAutomatically=NO;
-    
+
     // Create a NSUUID with the same UUID as the broadcasting beacon
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
     
@@ -41,8 +33,9 @@
                                                              identifier:@"com.pennApps.entrance"];
     
     // Tell location manager to start monitoring for the beacon region
-    //[self.locationManager startMonitoringForRegion:self.myBeaconRegion];
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
+    
+        
 }
 
 /* - (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
@@ -88,13 +81,16 @@
     // Beacon found!
     //self.statusLabel.text = @"Beacon found!";
     
+    /*NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"first_Name", @"first_name", @"last_Name", @"last_Name", @"uid", @"uid", @"present", @"present", nil]; */
+    
     CLBeacon *foundBeacon = [beacons firstObject];
     NSInteger n = foundBeacon.rssi;
     if (n == 0) {
         self.statusLabel.text = @"No";
-        
+        self.client.present = NO;
     } else {
         self.statusLabel.text = @"Yes";
+        self.client.present = YES;
     }
     
     // You can retrieve the beacon data from its properties

@@ -11,10 +11,14 @@
 @interface Client : NSObject
 
 @property bool present;
-@property (strong, nonatomic) NSString *firstName;
-@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *first_name;
+@property (strong, nonatomic) NSString *last_name;
 @property (strong, nonatomic) NSString *uid;
+@property (strong, nonatomic) NSString *password;
+@property (strong, nonatomic) NSString *username;
 
-- (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p;
+- (Client *)initWithId:(NSString *)cid firstName:(NSString *)fName lastName:(NSString *)lName present:(BOOL)p password:(NSString *)pw username:(NSString *)un;
+
+//- (Client *)initWithId:(NSString *)cid username:(NSString *)uName password:(NSString *)pw;
 
 @end

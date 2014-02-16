@@ -16,7 +16,7 @@ def send_text(employee):
     message = client.sms.messages.create(body=
                                          "%s, you are late for work, "
                                          "please come now" % (name),
-                                         to="+%d" % (employee.phone),
+                                         to="+1%d" % (employee.phone),
                                          from_="+12407433278")
     print message.sid
 

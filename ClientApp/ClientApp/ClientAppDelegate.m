@@ -7,13 +7,14 @@
 //
 
 #import "ClientAppDelegate.h"
-#import <RestKit/RestKit.h>
+#import "Resources.h"
 
 @implementation ClientAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+        
     return YES;
 }
 							
