@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Client.h"
 
-@interface ClientViewController : UIViewController
+@interface ClientViewController : UIViewController <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *userText;
-@property (weak, nonatomic) IBOutlet UITextField *pwText;
+@property (weak, atomic) IBOutlet UITextField *userText;
+@property (weak, atomic) IBOutlet UITextField *pwText;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) Client *client;
 
 -(IBAction)submitButtonPressed:(id)sender;
 
