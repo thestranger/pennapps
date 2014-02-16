@@ -14,10 +14,16 @@
 
 @implementation ClientViewController
 
+@synthesize userText, pwText, submitButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)submitButtonPressed:(id)sender {
+    
 }
 
 - (void)didReceiveMemoryWarning

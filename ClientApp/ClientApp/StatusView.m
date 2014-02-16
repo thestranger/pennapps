@@ -28,10 +28,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.client = [[Client alloc] initWithId:@"2500" firstName:@"Jon" lastName:@"Chen" present:YES password:@"password" username:@"Chenny_Chen_Chen"];
+    
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.pausesLocationUpdatesAutomatically=NO;
+    //self.locationManager.pausesLocationUpdatesAutomatically=NO;
     
     // Create a NSUUID with the same UUID as the broadcasting beacon
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
@@ -43,6 +45,31 @@
     // Tell location manager to start monitoring for the beacon region
     //[self.locationManager startMonitoringForRegion:self.myBeaconRegion];
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
+    
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
+    //RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
+    [requestMapping addAttributeMappingsFromDictionary:@{@"username":@"username", @"password":@"password"}];
+    NSString *s = [NSString stringWithFormat:@"%@%@", BASEURL, POSTNEWCLIENTSTATUS];
+    [objectManager addRequestDescriptor:
+     [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:POSTNEWCLIENTSTATUS method:RKRequestMethodPOST]];
+     //[RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:POSTLOGIN]];
+    
+    [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"Posted object with the following result: %@", mappingResult);
+        NSLog(@"WHOOOOOO!!!!");
+        self.statusLabel.text = @"YAY";
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Whut");
+        self.statusLabel.text = @"=(";
+    }];
+    
+    
+    
+    
 }
 
 /* - (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
@@ -117,6 +144,7 @@
     
     [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Posted object with the following result: %@", mappingResult);
+        NSLog(@"WHOOOOOO!!!!");
     } failure:nil];
     
      /*:self.client usingBlock:^(RKObjectLoader *loader) {
