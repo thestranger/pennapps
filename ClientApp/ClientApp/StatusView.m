@@ -20,21 +20,11 @@
     
     self.client = [[Client alloc] initWithId:@"2500" firstName:@"Jon" lastName:@"Chen" present:YES password:@"password" username:@"Chenny_Chen_Chen"];
     
-    //self.client = [[Client alloc] initWithId:@"2500" username:@"Chenny_Chen_Chen" password:@"password"];
     
     // Initialize location manager and set ourselves as the delegate
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    //self.locationManager.pausesLocationUpdatesAutomatically=NO;
-//    
-//    AFHTTPClient* client = [RKObjectManager sharedManager].HTTPClient;
-//    NSDictionary *headers = client.defaultHeaders;
-//    NSLog(@"Headers %d", headers.count);
-//    NSArray *arHeaders = headers.allKeys;
-//    NSArray *arValues = headers.allValues;
-//    for (int i=0; i < headers.count; i++)
-//    {
-//        NSLog(@"Header = %@; Value=%@", arHeaders[i], arValues[
+
     // Create a NSUUID with the same UUID as the broadcasting beacon
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"715D9AA5-ED95-431B-A5C3-4738168D45B6"];
     
@@ -43,9 +33,9 @@
                                                              identifier:@"com.pennApps.entrance"];
     
     // Tell location manager to start monitoring for the beacon region
-    //[self.locationManager startMonitoringForRegion:self.myBeaconRegion];
     [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
     
+        
 }
 
 /* - (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
@@ -91,23 +81,7 @@
     // Beacon found!
     //self.statusLabel.text = @"Beacon found!";
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",BASEURL, POSTNEWCLIENTSTATUS];
-    NSURL *url = [NSURL URLWithString:urlString];
-    RKObjectManager *objectManager = [RKObjectManager sharedManager];
-    objectManager.HTTPClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    
-    RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
-    
     /*NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys: @"first_Name", @"first_name", @"last_Name", @"last_Name", @"uid", @"uid", @"present", @"present", nil]; */
-    
-    [clientMapping addAttributeMappingsFromDictionary:
-     @{@"uid": @"id",
-       @"password": @"password",
-       @"username": @"username",
-       @"firstName": @"first_name",
-       @"lastName": @"last_nname",
-       @"present": @"isActive"}];
     
     CLBeacon *foundBeacon = [beacons firstObject];
     NSInteger n = foundBeacon.rssi;
@@ -118,24 +92,6 @@
         self.statusLabel.text = @"Yes";
         self.client.present = YES;
     }
-    
-    [objectManager addRequestDescriptor:
-     [RKRequestDescriptor requestDescriptorWithMapping:clientMapping objectClass:[Client class] rootKeyPath:@"client" method:nil]];
-    
-    
-    
-/*    [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSLog(@"Posted object with the following result: %@", mappingResult);
-        NSLog(@"WHOOOOOO!!!!");
-    } failure:nil]; */
-    
-     /*:self.client usingBlock:^(RKObjectLoader *loader) {
-        NSLog(@"In post object block");
-        loader.resourcePath = @"/client";
-        loader.delegate = self;
-        loader.method = RKRequestMethodPOST;
-        loader.objectMapping = clientMapping;
-        loader.serializationMapping = clientMapping; */
     
     // You can retrieve the beacon data from its properties
     //NSString *uuid = foundBeacon.proximityUUID.UUIDString;

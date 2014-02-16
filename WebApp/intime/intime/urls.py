@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'intime.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^request/$', 'views.trackemployee_list', name='rest'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login', views.login, name='login'),
     #The main page should check to see if the user is authenticated,
