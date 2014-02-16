@@ -7,7 +7,6 @@
 //
 
 #import "ClientAppDelegate.h"
-#import <RestKit/RestKit.h>
 #import "Resources.h"
 
 @implementation ClientAppDelegate
@@ -15,14 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASEURL]];
-    if (objectManager) {
-        objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
-        NSLog(@"AppDelegate: RestKit initialized with base URL: %@", BASEURL);
-    }
-    
-    
+        
     return YES;
 }
 							

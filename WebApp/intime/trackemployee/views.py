@@ -9,12 +9,6 @@ from django.db.models import Q
 
 # Create your views here.
 
-
-def query_request(request):
-    queries = re.sub(' ', '+', request.POST['query'])
-    return HttpResponseRedirect('/search/'+queries)
-
-
 def login(request):
     context = {}
     if request.method == 'POST':    
@@ -56,16 +50,18 @@ def workplace(request):
     context = {}
     return render(request, 'trackemployee/workplace.html', context)
 
-def search(request, query):
-    if request.method == 'POST':
-       return query_request(request)
-    context = {}
-    search_words = query.split('+')
-    results = set()
-    for word in search_words:
-        results.update(Employee.objects.filter(Q(first_name__contains=word) | Q(last_name__contains=word)).order_by('last_name'))
-    context['employees'] = list(results)
-    return render(request, 'trackemployee/search.html', context)
+# def search(request, query):
+    # if request.method == 'POST':
+       # print request.POST 
+       # queries = re.sub(' ', '+', request.POST['query'])
+       # return HttpResponseRedirect('/search/'+queries)
+    # context = {}
+    # search_words = query.split('+')
+    # results = set()
+    # for word in search_words:
+        # results.update(Employee.objects.filter(Q(first_name__contains=word) | Q(last_name__contains=word)).order_by('last_name'))
+    # context['employees'] = list(results)
+    # return render(request, 'trackemployee/search.html', context)
 
 def employee(request, user_id):
     if request.method == 'POST':
