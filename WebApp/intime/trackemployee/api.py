@@ -58,6 +58,7 @@ class EmployeeResource(ModelResource):
             user.present = present
             user.uid = uid
             user.save()
+            logger.info("successful user creation")
             return self.create_response(request, {
                 'success' : True,
                 'uid' : user.id,
@@ -78,6 +79,7 @@ class EmployeeResource(ModelResource):
         if user:
             if user.is_active:
                 login(request, user)
+                logger.info("Login Successful")
                 return self.create_response(request, {
                     'success': True
                 })
