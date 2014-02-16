@@ -11,8 +11,8 @@
 @interface Client : NSObject
 
 @property bool present;
-@property (strong, nonatomic) NSString *first_Name;
-@property (strong, nonatomic) NSString *last_Name;
+@property (strong, nonatomic) NSString *first_name;
+@property (strong, nonatomic) NSString *last_name;
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *username;
