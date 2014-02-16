@@ -1,12 +1,33 @@
-{% load staticfiles %}
+<!-- {% load staticfiles %} -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset=utf-"8" />
-		<link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
-		<link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}"/>
-		<link type="text/css" href="{% static "css/index.css" %}" rel="stylesheet">
-		<title>Main</title>
+	<!--	REINABLE IN PRODUCTION <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" /> -->
+	<!--	REINABLE IN PRODUCTION <link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}"/> -->
+	<!--  	REINABLE IN PROUCTION <link type="text/css" href="{% static "css/index.css" %}" rel="stylesheet">	-->
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<link  rel="stylesheet" href="bootstrap.min.css" >
+	<link  rel="stylesheet" href="style.css" >
+	<link  rel="stylesheet" href="index.css" >
+	
+	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+	<title>Main</title>
+
+
+<script language="javascript" type="text/javascript">
+				
+				$('#myTab a').click(function (e) {
+		  e.preventDefault()
+		  $(this).tab('show')
+		})
+
+		
+
+</script>
+
 	</head>
 <body>
 
@@ -72,6 +93,7 @@
 	</div>
 
 -->
+<!--
 <div class="dropdown">
   <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
     Dropdown
@@ -85,9 +107,56 @@
     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
   </ul>
 </div>
+-->
 
+<div class="container">
+	<ul class="nav nav-tabs" id="myTab">
+	  <li class="active" ><a href="#all" data-toggle="tab">All Employees</a></li> 
+	  <li><a href="#present" data-toggle="tab">Present Employees</a></li>
+	  <li><a href="#absent" data-toggle="tab">Absent Employees</a></li>
+	</ul>
 
+	<div class="tab-content">
+	  <div class="tab-pane active" id="all">
+	  		<div class="container">
+		  				{% if employees %}
+				<ul>
+					{% for employee in employees %}
+						<li><a href="/employee/{{ employee.id }}">{{ employee.id }} {{ employee.last_name }} {{ employee.first_name }}</a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+	  		</div>
+	  </div>
 
+	  <div class="tab-pane" id="present" name="present" >
+			<div class="container">
+						{% if employees %}
+				<ul>
+					{% for employee in employees %}
+						<li><a href="/employee/{{ employee.id }}">{{ employee.id }} {{ employee.last_name }} {{ employee.first_name }}</a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+	  		</div>
+	  </div>
+
+	  <div class="tab-pane" id="absent">
+	  		<div class="container">
+	  			{% if employees %}
+			<ul>
+				{% for employee in employees %}
+					<li><a href="/employee/{{ employee.id }}">{{ employee.id }} {{ employee.last_name }} {{ employee.first_name }}</a></li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+	  		</div>
+
+	  </div>
+
+	</div>
+
+</div>
 <!--
 		<div id="container">
 			<form action="" method="post">{% csrf_token %}
@@ -104,13 +173,7 @@
 
 
 
-			{% if employees %}
-			<ul>
-				{% for employee in employees %}
-					<li><a href="/employee/{{ employee.id }}">{{ employee.id }} {{ employee.last_name }} {{ employee.first_name }}</a></li>
-				{% endfor %}
-			</ul>
-			{% endif %}
+			
 		</div>
 		
 </body>
