@@ -129,6 +129,12 @@ LOGGING = {
     }
 }
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'sawsym'
+EMAIL_HOST_PASSWORD = 'pennappspass'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
