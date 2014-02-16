@@ -208,6 +208,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = pennApps;
 				TargetAttributes = {
+					673F810818AF1C8200E3E975 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					673F812918AF1C8300E3E975 = {
 						TestTargetID = 673F810818AF1C8200E3E975;
 					};

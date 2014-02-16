@@ -16,20 +16,22 @@ def query_request(request):
 
 
 def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
+    context = {}
+    if request.method == 'POST':    
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
 
+            else:
+                return
+                # Account is disabled
         else:
             return
-            # Account is disabled
-    else:
-        return
-        # Invalid Login
-
+            # Invalid Login
+    return render(request, 'trackemployee/login.html', context)
     
 def index(request):
     context = {}
