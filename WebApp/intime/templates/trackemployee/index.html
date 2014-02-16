@@ -1,7 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 	<head>
 		<meta charset=utf-"8" />
 		<link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
@@ -108,7 +107,7 @@
 			{% if employees %}
 			<ul>
 				{% for employee in employees %}
-					<li><a href="/employee/{{ employee.uid }}">{{ employee.uid }}</a> {{ employee.last_name }} {{ employee.first_name }}</li>
+					<li><a href="/employee/{{ employee.id }}">{{ employee.id }} {{ employee.last_name }} {{ employee.first_name }}</a></li>
 				{% endfor %}
 			</ul>
 			{% endif %}
