@@ -26,26 +26,26 @@ class StatusResource(ModelResource):
         uid = data.get('uid', '')
         status = data.get('status', '')
         time = datetime.datetime.now()
-        if not Employee.objects.filter(uid=uid):
+        if not Employee.objects.filter(user_id=uid):
             return self.create_response(request, {
                     'success' : False,
                     'reason' : 'uid does not exist',
                     }, HttpUnauthorized)
-        elif Employee.objects.filter(uid=uid, present=status):
+        elif Employee.objects.filter(user_id=uid, present=status):
             return self.create_response(request, {
                     'success' : False,
                     'reason' : 'Status has not been changed',
                     }, HttpUnauthorized)
         
-        employee = Employee.objects.get(uid=uid)
+        employee = Employee.objects.get(user_=uid)
         employee.present = status
         employee.save()
         logger.info(type(uid))
         if status:
-            timelog = TimeLog.objects.create(employee_id=uid, time_in=time, time_out=-1)
+            timelog = TimeLog.objects.create(employee_id=uid, time_in=time.strftime('%Y-%m-%d %H:%M:%S'), time_out=None)
         else:
-            timelog = TimeLog.objects.get(employee_id=uid, time_out=-1)
-            timelog.time_out=time
+            timelog = TimeLog.objects.get(employee_id=uid, time_out=None)
+            timelog.time_out=time.strftime('%Y-%m-%d %H:%M:%S')
             timelog.save()
         return self.create_response(request, {
                 'success' : True,
