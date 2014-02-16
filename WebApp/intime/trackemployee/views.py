@@ -65,11 +65,11 @@ def search(request, query):
     context['employees'] = list(results)
     return render(request, 'trackemployee/search.html', context)
 
-def employee(request, employee_uid):
+def employee(request, user_id):
     if request.method == 'POST':
        return query_request(request)
     context = {}
-    context['employee'] = Employee.objects.get(uid=employee_uid)
+    context['employee'] = Employee.objects.get(user_id=user_id)
     return render(request, 'trackemployee/employee.html', context)
 
     

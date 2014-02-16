@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8" />
+<meta charset="utf-8" />
 <title>Login</title>
 </head>
 <body>
@@ -18,10 +18,12 @@
 		<div id="container">
 			{% if employee %}
 			<ul>
+				<li>ID: {{ employee.user_id }}
 				<li>UID: {{ employee.uid }}</li> 
-				<li>Name: {{ employee.first_name }} {{ employee.last_name }}</li>
-				<li>Email: {{ employee.email }}</li>
+				<li>Name: {{ employee.user.first_name }} {{ employee.last_name }}</li>
+				<li>Email: {{ employee.user.email }}</li>
 				<li>Phone: {{ employee.phone }}</li>
+				<li>Present: {{ employee.present }}</li>	
 			</ul>
 			{% endif %}
 		</div>

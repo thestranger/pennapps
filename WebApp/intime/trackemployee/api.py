@@ -14,6 +14,7 @@ class StatusResource(ModelResource):
     class Meta:
         queryset = Employee.objects.all()
         resource_name = 'status'
+
     def prepend_urls(self):
         return [
             url(r"^(?P<resource_name>%s)/change_status%s$" %
@@ -84,8 +85,8 @@ class EmployeeResource(ModelResource):
         first_name = data.get('first_name', '')
         last_name = data.get('last_name', '')
         uid = data.get('uid', '')
-        phone = data.get('phone', '')
-        present = False
+        phone = data.get('phone', 5555555555)
+        present = data.get('present', True)
 
         if User.objects.filter(username=username):
             return self.create_response(request, {
@@ -96,10 +97,8 @@ class EmployeeResource(ModelResource):
             user = User.objects.create_user(username=username, email=email,
                                             password=password, first_name=first_name,
                                             last_name=last_name)
-            user.phone = phone
-            user.present = present
-            user.uid = uid
-            user.save()
+            employee = Employee.objects.create(user_id=user.id, phone=phone,
+                                                        present=present, uid=uid)
             logger.info("successful user creation")
             return self.create_response(request, {
                 'success' : True,
