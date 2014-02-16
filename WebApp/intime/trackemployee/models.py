@@ -8,8 +8,8 @@ class Employee(models.Model):
     # from User have first_name, last_name, 
     # email, username, password
     present = models.BooleanField()
-    uid = models.CharField(max_length=100, primary_key=True)
-    phone = models.CharField(max_length=12, unique=True)
+    uid = models.CharField(max_length=100)
+    phone = models.CharField(max_length=12)
 
 
 class TimeLog(models.Model):

@@ -75,6 +75,17 @@ def perdelta(end, delta):
 def get_days(end):
     return [result for result in perdelta(end, timedelta(days=1))]
 
+def days_to_timeperiods(week):
+    tp = []
+    for day in week:
+        tps = []
+        for timelog in TimeLog.objects.all():
+            print day
+            print timelog.time_in.strftime('%Y-%m-%d')
+            if timelog.time_in.strftime('%Y-%m-%d') == day:
+                tps.append(timelog)
+        tp.append(tps)
+    return tp
 
 def employee(request, user_id):
     if request.method == 'POST':

@@ -1,6 +1,8 @@
 Django==1.6.2
 South==0.8.4
+django-autofixture==0.6.3
 django-tastypie==0.11.0
+fake-factory==0.3.2
 httplib2==0.8
 python-dateutil==2.2
 python-mimeparse==0.1.4
