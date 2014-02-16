@@ -64,13 +64,19 @@
     
     //RKObjectMapping *clientMapping = [RKObjectMapping mappingForClass:[Client class]];
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
-    [requestMapping addAttributeMappingsFromDictionary:@{@"username":@"username", @"password":@"password"}];
+    [requestMapping addAttributeMappingsFromDictionary:
+     @{@"uid": @"id",
+       @"password": @"password",
+       @"username": @"username",
+       @"first_name": @"first_name",
+       @"last_name": @"last_name",
+       @"present": @"isActive"}];
     //NSString *s = [NSString stringWithFormat:@"%@%@", BASEURL, POSTNEWCLIENTSTATUS];
     [objectManager addRequestDescriptor:
      [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:nil method:RKRequestMethodPOST]];
      //[RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Client class] rootKeyPath:POSTLOGIN]];
     
-    [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [objectManager postObject:self.client path:[NSString stringWithFormat:@"%@/%@/%@/",POSTNEWCLIENTSTATUS,self.client.username,self.client.password] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Posted object with the following result: %@", mappingResult);
         NSLog(@"WHOOOOOO!!!!");
         self.statusLabel.text = @"YAY";
@@ -161,10 +167,10 @@
     
     
     
-    [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+/*    [objectManager postObject:self.client path:POSTNEWCLIENTSTATUS parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Posted object with the following result: %@", mappingResult);
         NSLog(@"WHOOOOOO!!!!");
-    } failure:nil];
+    } failure:nil]; */
     
      /*:self.client usingBlock:^(RKObjectLoader *loader) {
         NSLog(@"In post object block");
