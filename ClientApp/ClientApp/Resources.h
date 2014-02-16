@@ -9,7 +9,7 @@
 #ifndef ClientApp_Resources_h
 #define ClientApp_Resources_h
 
-#define BASEURL @"http://107.170.44.163/api/"
+#define BASEURL @"http://107.170.44.163"
 #define POSTLOGIN @"/client/login"
 #define POSTNEWCLIENTSTATUS @"employee/login/"
 #define GETCLIENTSTATUS @"/client/status"
