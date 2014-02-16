@@ -36,10 +36,9 @@ def send_email(employee):
     # message.set_from('The Boss <doe@email.com>')
     # sg.send(message)
     send_mail('Late For Work',
-              '''Hi %s\nAre you ok? You're late for work.
-              Please attempt to be more punctual
-                in the future.
-               ''' % (employee.user.first_name),
+              "Hi %s\nAre you ok? You're late for work.\n"
+              "Please attempt to be more punctual in the future."
+              % (employee.user.first_name),
               'noreply@tracktimeapp.com',
         ['%s <%s>' % (employee.user.first_name, employee.user.email)], fail_silently=False)
 
