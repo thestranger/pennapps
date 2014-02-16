@@ -1,4 +1,4 @@
-from trackemployee.models import Employee
+from trackemployee.models import Employee, TimeLog
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from tastypie.http import HttpUnauthorized, HttpForbidden
@@ -6,17 +6,59 @@ from django.conf.urls import url
 from tastypie.utils import trailing_slash
 from tastypie.resources import ModelResource
 import logging
+import datetime
 
 logger = logging.getLogger(__name__)
 
-
+class StatusResource(ModelResource):
+    class Meta:
+        queryset = Employee.objects.all()
+        resource_name = 'status'
+    def prepend_urls(self):
+        return [
+            url(r"^(?P<resource_name>%s)/change_status%s$" %
+                (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('change_status'), name="change_status")]
+                
+    def change_status(self, request, **kwargs):
+        self.method_check(request, allowed=['post'])
+        data = self.deserialize(request, request.body, format=request.META.get('CONTENT_TYPE', 'application/json'))
+        uid = data.get('uid', '')
+        status = data.get('status', '')
+        time = datetime.datetime.now()
+        if not Employee.objects.filter(uid=uid):
+            return self.create_response(request, {
+                    'success' : False,
+                    'reason' : 'uid does not exist',
+                    }, HttpUnauthorized)
+        elif Employee.objects.filter(uid=uid, present=status):
+            return self.create_response(request, {
+                    'success' : False,
+                    'reason' : 'Status has not been changed',
+                    }, HttpUnauthorized)
+        
+        employee = Employee.objects.get(uid=uid)
+        employee.present = status
+        employee.save()
+        logger.info(type(uid))
+        if status:
+            timelog = TimeLog.objects.create(employee_id=uid, time_in=time, time_out=-1)
+        else:
+            timelog = TimeLog.objects.get(employee_id=uid, time_out=-1)
+            timelog.time_out=time
+            timelog.save()
+        return self.create_response(request, {
+                'success' : True,
+                'uid' : uid,
+                })
+            
 class EmployeeResource(ModelResource):
     class Meta:
         queryset = Employee.objects.all()
         fields = ['phone']
         allowed_methods = ['get', 'post']
         resource_name = 'employee'
-
+        
     def prepend_urls(self):
         return [
             url(r"^(?P<resource_name>%s)/login%s$" %
