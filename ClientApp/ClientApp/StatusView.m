@@ -78,10 +78,8 @@
     [mngr POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Error with user creation." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
-        [alert show];
-        NSLog(@"Response: %@", operation.response);
-        NSLog(@"Error: %@", error);
+//        NSLog(@"Response: %@", operation.response);
+//        NSLog(@"Error: %@", error);
     }];
     
     // You can retrieve the beacon data from its properties

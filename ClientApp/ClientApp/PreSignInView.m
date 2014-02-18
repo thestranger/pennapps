@@ -89,8 +89,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toStatus"]) {
-        StatusView *status = [[StatusView alloc] init];
-        status.client = self.client;
+        StatusView *status = segue.destinationViewController;
+        [status setClient:self.client];
     }
 }
 
